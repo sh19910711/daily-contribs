@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161024183921) do
+ActiveRecord::Schema.define(version: 20161024190216) do
 
   create_table "commits", force: :cascade do |t|
     t.string  "name"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20161024183921) do
     t.integer "user_id"
     t.integer "repo_id"
     t.string  "message"
+    t.date    "date"
     t.index ["user_id"], name: "index_commits_on_user_id"
   end
 
