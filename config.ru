@@ -1,2 +1,10 @@
 require_relative 'app/app'
-run App
+require_relative 'app/api'
+
+map '/api' do
+  run API
+end
+
+map '/' do
+  run App
+end
