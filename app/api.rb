@@ -11,7 +11,7 @@ class API < Grape::API
 
   resources :users do
     get do
-      User.all
+      User.select(:id, :name, :github_id).all
     end
   end
 end
