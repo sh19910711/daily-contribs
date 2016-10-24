@@ -14,7 +14,7 @@ class Client
     client.user_events(user.name).map do |e|
       if e.type == 'PushEvent'
         e.payload.commits.map do |c|
-          { sha: c.sha, message: c.message, repo_id: e.repo.id }
+          { sha: c.sha, message: c.message, repo_id: e.repo.id, date: e.created_at }
         end
       else
         []
@@ -27,7 +27,7 @@ User.all.each do |u|
   puts "find new commits of #{u.name}"
   Client.new(ENV['GITHUB_TOKEN']).commits(u).each do |c|
     unless u.commits.where(sha: c[:sha]).exists?
-      u.commits.create(sha: c[:sha], repo_id: c[:repo_id], message: c[:message])
+      u.commits.create(sha: c[:sha], repo_id: c[:repo_id], message: c[:message], date: c[:date])
     end
   end
 end
