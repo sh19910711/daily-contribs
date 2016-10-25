@@ -10,6 +10,7 @@ gem 'sinatra-activerecord'
 gem 'sqlite3'
 gem 'octokit'
 gem 'warden-github'
+gem 'foreman'
 
 group :development do
   gem 'byebug'
