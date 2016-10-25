@@ -10,24 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161025025652) do
+ActiveRecord::Schema.define(version: 20161025060957) do
 
   create_table "commits", force: :cascade do |t|
-    t.string  "name"
     t.string  "sha"
     t.integer "user_id"
-    t.integer "repo_id"
     t.string  "message"
     t.date    "date"
-    t.index ["user_id"], name: "index_commits_on_user_id"
+    t.index ["user_id", "sha"], name: "index_commits_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string  "name"
-    t.integer "github_id"
-    t.integer "goal_of_commits"
-    t.integer "commits"
-    t.string  "token"
+    t.string   "name"
+    t.integer  "github_id"
+    t.integer  "goal_of_commits"
+    t.integer  "commits"
+    t.string   "token"
+    t.datetime "last_push_date"
   end
 
 end
