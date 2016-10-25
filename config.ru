@@ -1,3 +1,4 @@
+require 'byebug' if ENV['RACK_ENV'] === 'development'
 require 'active_record'
 ActiveRecord::Base.establish_connection(:adapter => :sqlite3, :database => 'tmp/db.sqlite3')
 
