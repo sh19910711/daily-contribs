@@ -9,3 +9,8 @@ gem 'rake'
 gem 'sinatra-activerecord'
 gem 'sqlite3'
 gem 'octokit'
+gem 'warden-github'
+
+group :development do
+  gem 'byebug'
+end
