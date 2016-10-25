@@ -23,6 +23,8 @@ class App < Sinatra::Base
   get '/login' do
     verify_session
     env['warden'].authenticate!
+    u = User.find_or_create_by(name: github_user.login)
+    u.update_attributes(token: github_user.token)
     redirect '/'
   end
 
@@ -38,7 +40,7 @@ class App < Sinatra::Base
     end
 
     def verify_session
-      if gtihub_user && !warden_github_sso_session_valid?(env['warden'].user, 10)
+      if github_user && !warden_github_sso_session_valid?(env['warden'].user, 10)
         env['warden'].logout
       end
     end
